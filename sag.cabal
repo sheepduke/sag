@@ -25,7 +25,11 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      AbbrGen
+      AlwaysValidWordFilter
+      SetBasedWordFilter
+      WordCombinations
+      WordFilter
   other-modules:
       Paths_sag
   hs-source-dirs:
@@ -34,6 +38,8 @@ library
       base >=4.7 && <5
     , cmdargs
     , containers
+    , text
+    , unordered-containers
   default-language: Haskell2010
 
 executable sag
@@ -48,6 +54,8 @@ executable sag
     , cmdargs
     , containers
     , sag
+    , text
+    , unordered-containers
   default-language: Haskell2010
 
 test-suite sag-test
@@ -63,4 +71,6 @@ test-suite sag-test
     , cmdargs
     , containers
     , sag
+    , text
+    , unordered-containers
   default-language: Haskell2010

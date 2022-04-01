@@ -21,8 +21,10 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
-- containers
 - cmdargs
+- containers
+- text
+- unordered-containers
 
 library:
   source-dirs: src
@@ -35,6 +37,8 @@ executables:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
+    # - -prof
+    # - -fprof-auto
     dependencies:
     - sag
 
