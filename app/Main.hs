@@ -3,7 +3,6 @@
 module Main where
 
 import AbbrGen
-import AlwaysValidWordFilter
 import Control.Monad
 import Data.Foldable (for_)
 import qualified Data.HashSet as Set
@@ -36,11 +35,16 @@ cliArgDef =
 main :: IO ()
 main = do
   cliArgs <- cmdArgs cliArgDef
-  validWords <- readDict $ dict cliArgs
-  let wordFilter = SetBasedWordFilter.new validWords
+  wordFilter <- newWordFilter $ dict cliArgs
   let result = generateAbbreviations (names cliArgs) MustTakeOneChar wordFilter
   for_ result putStrLn
   where
     readDict dictFile = do
       content <- readFile dictFile
       return . lines $ content
+
+    newWordFilter dictFile = case dictFile of
+      [] -> do return (\_ -> True)
+      _ -> do
+        content <- readFile dictFile
+        return . SetBasedWordFilter.new . lines $ content

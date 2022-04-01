@@ -8,18 +8,23 @@ import Data.Text (Text)
 import qualified Data.Text as Text
 import WordFilter
 
-newtype SetBasedWordFilter a = SetBasedWordFilter
-  { dict :: Set a
-  }
-
-new :: (Ord a) => [a] -> SetBasedWordFilter a
+new :: [String] -> WordFilter
 new validWords =
-  SetBasedWordFilter
-    { dict = Set.fromList validWords
-    }
+  let dict = Set.fromList validWords
+   in (`Set.member` dict)
 
-instance WordFilter (SetBasedWordFilter String) where
-  isValidWord wordFilter word = Set.member word $ dict wordFilter
+-- newtype SetBasedWordFilter a = SetBasedWordFilter
+--   { dict :: Set a
+--   }
 
-instance WordFilter (SetBasedWordFilter Text) where
-  isValidWord wordFilter word = Set.member (Text.pack word) $ dict wordFilter
+-- new :: (Ord a) => [a] -> SetBasedWordFilter a
+-- new validWords =
+--   SetBasedWordFilter
+--     { dict = Set.fromList validWords
+--     }
+
+-- instance WordFilter (SetBasedWordFilter String) where
+--   isValidWord wordFilter word = Set.member word $ dict wordFilter
+
+-- instance WordFilter (SetBasedWordFilter Text) where
+--   isValidWord wordFilter word = Set.member (Text.pack word) $ dict wordFilter
