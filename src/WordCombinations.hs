@@ -1,3 +1,5 @@
+{-# LANGUAGE NamedFieldPuns #-}
+
 module WordCombinations where
 
 import WordFilter (WordFilter)
@@ -9,18 +11,31 @@ combinations (x : xs) =
   let restResult = combinations xs
    in [[x]] ++ restResult ++ map (x :) restResult
 
-data WordCombinationsPolicy
-  = MustTakeOneChar
-  | MustKeepFirstChar
-  | MayOmitWord
+data WordCombinationPolicy = WordCombinationPolicy
+  { minCharCountFromEachWord :: Int,
+    maxCharCountFromEachWord :: Int,
+    maxCombinationLength :: Int,
+    mustTakeFirstChar :: Bool
+  }
+  deriving (Show)
 
-generateWordCombinations :: [String] -> WordCombinationsPolicy -> [String]
+defaultWordCombinationPolicy =
+  WordCombinationPolicy
+    { minCharCountFromEachWord = 1,
+      maxCharCountFromEachWord = 3,
+      maxCombinationLength = 5,
+      mustTakeFirstChar = False
+    }
+
+generateWordCombinations :: [String] -> WordCombinationPolicy -> [String]
 generateWordCombinations words policy =
-  map concat . mapM wordCombinations $ words
+  filter (\word -> length word <= maxCombinationLength policy) . map concat . mapM wordCombinations $ words
   where
     wordCombinations word =
-      let result = case policy of
-            MustTakeOneChar -> combinations word
-            MustKeepFirstChar -> map (head word :) $ combinations $ tail word
-            MayOmitWord -> [] : combinations word
-       in result
+      filter isWordLengthValid $
+        if mustTakeFirstChar policy
+          then [head word] : (map (head word :) . combinations $ tail word)
+          else combinations word
+    isWordLengthValid word =
+      let listLength = length word
+       in listLength >= minCharCountFromEachWord policy && listLength <= maxCharCountFromEachWord policy

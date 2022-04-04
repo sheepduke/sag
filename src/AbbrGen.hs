@@ -1,10 +1,10 @@
 module AbbrGen where
 
 import qualified Data.Set as Set
-import WordCombinations (WordCombinationsPolicy, generateWordCombinations)
+import WordCombinations (WordCombinationPolicy, generateWordCombinations)
 import WordFilter
 
-generateAbbreviations :: [String] -> WordCombinationsPolicy -> WordFilter -> [String]
+generateAbbreviations :: [String] -> WordCombinationPolicy -> WordFilter -> [String]
 generateAbbreviations words policy wordFilter =
   dedup . filter wordFilter $
     generateWordCombinations words policy
