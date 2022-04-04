@@ -1,10 +1,12 @@
 * Introduction
 
+See its help message for more detail.
+
 #+BEGIN_SRC bash
-sag - Sane Abbreviations Generator
+sag - Sane Abbreviations Generator 1.0
 
 sag [OPTIONS] [WORDS]
-  Generate sane abbreviations from against dictionary
+  Generate sane abbreviations against dictionary.
 
 Common flags:
   -d --dict=DICT_FILE       Dictionary file, defaults to a built-in English
@@ -16,6 +18,16 @@ Common flags:
   -k --keep-first-char      Keep first char of each word
   -? --help                 Display help message
   -V --version              Print version information
+     --numeric-version      Print just the version number
 
-Generate abbreviations against the dictionary file.
+Generate abbreviations against given dictionary file. It contains a built-in
+English dictionary that has 370,000 words.
 #+END_SRC
+
+* Installation
+
+#+BEGIN_SRC bash
+stack install
+#+END_SRC
+
+Then invoke ~sag~ and have a go!
