@@ -32,10 +32,10 @@ cliArgDef =
       keep_first_char = def &= name "k" &= help "Keep first char of each word",
       names = def &= args &= typ "WORDS"
     }
-    &= summary "sag - Sane Abbreviations Generator"
-    &= help "Generate sane abbreviations from against dictionary"
+    &= summary "sag - Sane Abbreviations Generator 1.0"
+    &= help "Generate sane abbreviations against dictionary."
     &= details
-      [ "Generate abbreviations against the dictionary file."
+      [ "Generate abbreviations against given dictionary file. It contains a built-in English dictionary that has 370,000 words."
       ]
 
 main :: IO ()
