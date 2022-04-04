@@ -2,6 +2,8 @@
 
 module WordCombinations where
 
+import qualified Data.List as List
+import System.IO (IOMode (ReadMode, WriteMode), hPutStr, hPutStrLn, withFile)
 import WordFilter (WordFilter)
 
 combinations :: [a] -> [[a]]
