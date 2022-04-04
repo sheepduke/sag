@@ -11,7 +11,7 @@ import System.Console.CmdArgs
 import WordCombinations
 import WordFilter
 
-data CliArg = CliArg
+data Sag = Sag
   { dict :: Maybe String,
     no_dict :: Bool,
     min_char_count :: Maybe Int,
@@ -23,7 +23,7 @@ data CliArg = CliArg
   deriving (Data, Show, Typeable)
 
 cliArgDef =
-  CliArg
+  Sag
     { dict = def &= typ "DICT_FILE" &= help "Dictionary file, defaults to a built-in English dictionary",
       no_dict = def &= name "n" &= help "Ignore dictionary",
       min_char_count = def &= name "i" &= help "Minimum number of chars taken from each word",
