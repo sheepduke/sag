@@ -1,2 +1,21 @@
 * Introduction
 
+#+BEGIN_SRC bash
+sag - Sane Abbreviations Generator
+
+sag [OPTIONS] [WORDS]
+  Generate sane abbreviations from against dictionary
+
+Common flags:
+  -d --dict=DICT_FILE       Dictionary file, defaults to a built-in English
+                            dictionary
+  -n --no-dict              Ignore dictionary
+  -i --min-char-count=INT   Minimum number of chars taken from each word
+  -a --max-char-count=INT   Maximum number of chars taken from each word
+  -l --max-abbr-length=INT  Maximum length of generated abbreviation
+  -k --keep-first-char      Keep first char of each word
+  -? --help                 Display help message
+  -V --version              Print version information
+
+Generate abbreviations against the dictionary file.
+#+END_SRC
